@@ -30,7 +30,7 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules, // Regras recomendadas do ESLint
-      ...tseslint.configs.recommended.rules, // Regras recomendadas do TypeScript
+      ...tseslint.configs.recommended, // Regras recomendadas do TypeScript
       ...react.configs.recommended.rules, // Regras recomendadas do React
       ...reactHooks.configs.recommended.rules, // Regras recomendadas do React Hooks
       'prettier/prettier': [
