@@ -11,6 +11,14 @@ class Service {
   async GetProducts() {
     return await api.get('/products')
   }
+
+  async GetProductById(slug: string) {
+    return await api.get(`/product/${slug}`)
+  }
+
+  async PutProduct(slug: string, productData: { name: string, price: number }) {
+    return await api.put(`/product/${slug}`, productData)
+    }
 }
 
 export const api = axios.create({

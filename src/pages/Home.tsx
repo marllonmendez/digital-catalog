@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import Service from '@/service'
 import { useProductsContext } from '@/context/useProductContext'
@@ -10,6 +10,8 @@ import { ProductCard, ProductModal, ProductNotFound } from '@/components/Product
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
   const { products, setProducts } = useProductsContext()
+
+  const { slug } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -25,14 +27,20 @@ export default function Home() {
     getProducts()
   }, [setProducts])
 
+  useEffect(() => {
+    const isPathAddProduct = location.pathname === '/add-product'
+    const isPathProduct = location.pathname.includes(`/product/${slug}`)
+    setShowModal(isPathAddProduct || isPathProduct)
+  }, [location.pathname])
+
   const handleAddProduct = () => {
     setShowModal(true)
     navigate('/add-product', { replace: true })
   }
 
-  const handleOnShowInfo = () => {
+  const handleOnShowInfo = (slug: string) => {
     setShowModal(true)
-    navigate('/info-product', { replace: true })
+    navigate(`/product/${slug}`, { replace: true })
   }
 
   const handleClose = () => {
@@ -52,7 +60,7 @@ export default function Home() {
               <ProductCard
                 key={product.id}
                 product={product}
-                onShowInfo={handleOnShowInfo}
+                onShowInfo={() => handleOnShowInfo(product.slug)}
               />
             ))}
           </section>
@@ -61,9 +69,7 @@ export default function Home() {
             <ProductNotFound />
           </section>
         )}
-        {(showModal || location.pathname === '/add-product') || (showModal || location.pathname === '/info-product') ? (
-          <ProductModal closeModal={handleClose} />
-        ) : null}
+        {showModal && <ProductModal closeModal={handleClose} />}
       </main>
     </div>
   )

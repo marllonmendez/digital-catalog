@@ -23,6 +23,7 @@ const InputNumber: React.FC<IInput> = ({
         getInputRef={inputRef}
         prefix={'R$ '}
         decimalScale={2}
+        fixedDecimalScale={true}
         thousandSeparator="."
         decimalSeparator=","
         className="w-[500px] sm:w-[300px] p-3 bg-transparent text-tertiary border-2 border-solid border-tertiary/50 rounded-lg pl-5 outline-none transition-all duration-500 ease-in-out hover:border-primary hover:ring-0 hover:ring-primary focus:border-primary focus:ring-0 focus:ring-primary"

@@ -3,10 +3,11 @@ import { IconType } from 'react-icons'
 import { a } from 'vite/dist/node/types.d-aGj9QkWt'
 
 export interface IProduct {
-  id?: number
+  id: number
   name: string
   price: number
   image: string
+  slug: string
 }
 
 export interface IProductCard {
