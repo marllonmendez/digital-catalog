@@ -6,9 +6,10 @@ const ProductContext = createContext({} as IProductContext)
 
 export default function ProductProvider({ children }: IProductProvider) {
   const [products, setProducts] = useState<IProduct[]>([])
+  const [search, setSearch] = useState<string>('')
 
   return (
-    <ProductContext.Provider value={{ products, setProducts }}
+    <ProductContext.Provider value={{ products, setProducts, search, setSearch }}
     >
       {children}
     </ProductContext.Provider>

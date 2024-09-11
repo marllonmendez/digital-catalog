@@ -4,7 +4,7 @@ import InputContainer from '@/components/Input/InputContainer'
 
 const InputFile: React.FC<IInput> = ({ label, type, placeholder, accept, updateValue }) => {
   const [fileName, setFileName] = useState<string | undefined>(placeholder)
-  const [isFileSelected, setIsFileSelected] = useState(false)
+  const [isFileSelected, setIsFileSelected] = useState<boolean>(false)
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
