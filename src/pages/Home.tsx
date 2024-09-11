@@ -55,7 +55,7 @@ export default function Home() {
       <Header addProduct={handleAddProduct} />
       <main>
         {isProduct ? (
-          <section className="grid gap-6 grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+          <section className="grid gap-6 grid-cols-4 sm:grid-cols-2 md:grid-cols-3">
             {products.map((product) => (
               <ProductCard
                 key={product.id}

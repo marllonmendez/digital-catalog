@@ -35,6 +35,7 @@ export interface IInput {
   accept?: string
   value?: any
   updateValue?: (value: any) => void
+  maxLength?: number
 }
 
 export interface IButton {
