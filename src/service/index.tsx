@@ -18,7 +18,11 @@ class Service {
 
   async PutProduct(slug: string, productData: { name: string, price: number }) {
     return await api.put(`/product/${slug}`, productData)
-    }
+  }
+
+  async DeleteProduct(slug: string) {
+    return await api.delete(`/product/${slug}`)
+  }
 }
 
 export const api = axios.create({

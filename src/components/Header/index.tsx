@@ -11,7 +11,13 @@ const Header: React.FC<IHeader> = ({ addProduct }) => {
     <header className="flex flex-col justify-center w-full">
       <Search />
       <div className="flex items-center justify-between w-full py-5">
-        <h2 className="text-white font-bold text-4xl sm:text-3xl md:text-3xl">Catálogo</h2>
+        <nav>
+          <a href="/" aria-label="Home">
+            <h1 className="text-white font-bold text-4xl sm:text-3xl md:text-3xl">
+              Catálogo
+            </h1>
+          </a>
+        </nav>
         <Button
           label="Novo"
           onClick={addProduct}

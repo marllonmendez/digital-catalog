@@ -39,11 +39,6 @@ const ProductModal: React.FC<IProductModal> = ({ closeModal }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!name || !price) {
-      console.error('All fields are required.')
-      return
-    }
-
     const priceStringToNumber = Number(price
       .replace('R$ ', '')
       .replace(',', '.')
@@ -51,38 +46,65 @@ const ProductModal: React.FC<IProductModal> = ({ closeModal }) => {
     )
 
     const updatedProduct = () => {
-      const newSlug = slugify(name, { lower: true, strict: true })
+      const newSlug = slugify(name, { lower: true, strict: true }).replace('percent', '')
       navigate(`/product/${newSlug}`, { replace: true })
       window.location.reload()
     }
 
     try {
       if (isPathProduct) {
+        if (!name || !price ) {
+          console.error('Todos os campos são obrigatórios.')
+          return
+        }
+
         await Service.PutProduct(slug, { name, price: priceStringToNumber })
         updatedProduct()
       } else {
+        if (!name || !price || !image) {
+          console.error('Todos os campos são obrigatórios.')
+          return
+        }
+
         const formData = new FormData()
         formData.append('name', name)
         formData.append('price', price)
         if (image) {
           formData.append('image', image)
         }
+
         await Service.PostProduct(formData)
-        newProduct()
+        onClear()
       }
     } catch (error) {
-      console.error('Failed to save product:', error)
+      console.error('Falha ao salvar produto:', error)
     }
   }
 
-
-  const newProduct = useCallback(() => {
+  const onClear = useCallback(() => {
     setName('')
     setPrice('')
     setImage(null)
     closeModal()
     window.location.reload()
   }, [closeModal])
+
+  const deleteProduct = () => {
+    closeModal()
+    navigate(`/`, { replace: true })
+    window.location.reload()
+  }
+
+  const handleDelete = async ()=> {
+    try {
+      if (isPathProduct) {
+        await Service.DeleteProduct(slug)
+        deleteProduct()
+      }
+    } catch (error) {
+      console.error('Erro ao deletar usuário: ', error)
+    }
+  }
 
   return (
     <div className="flex items-center justify-center fixed inset-0 z-50 bg-black/50">
@@ -103,7 +125,7 @@ const ProductModal: React.FC<IProductModal> = ({ closeModal }) => {
             {isPathProduct ? 'Editar Item' : 'Cadastrar Item'}
           </h2>
           {isPathProduct ? (
-            <button>
+            <button onClick={handleDelete}>
               <IoTrash size={30} className="text-tertiary hover:text-red-700 transition-all ease-in-out duration-500" />
             </button>
           ) : null}
@@ -113,8 +135,9 @@ const ProductModal: React.FC<IProductModal> = ({ closeModal }) => {
             label="Nome"
             type="text"
             placeholder="Insira o nome"
+            maxLength={50}
             value={name}
-            updateValue={(value) => setName(value)}  // Atualizar nome e slug
+            updateValue={(value) => setName(value)}
           />
           <InputPrice
             label="Preço"

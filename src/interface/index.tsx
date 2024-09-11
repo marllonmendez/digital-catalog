@@ -35,6 +35,7 @@ export interface IInput {
   accept?: string
   value?: any
   updateValue?: (value: any) => void
+  maxLength?: number
 }
 
 export interface IButton {
@@ -48,6 +49,8 @@ export interface IButton {
 export interface IProductContext {
   products: IProduct[]
   setProducts: Dispatch<SetStateAction<IProduct[]>>
+  search: string
+  setSearch: Dispatch<SetStateAction<string>>
 }
 
 export interface IProductProvider {

@@ -23,7 +23,7 @@ const ProductCard: React.FC<IProductCard> = ({ product, onShowInfo }) => {
         </button>
       </div>
       <div className="flex flex-col p-4">
-        <h1 className="text-lg text-tertiary font-normal">{product.name}</h1>
+        <h2 className="text-lg text-tertiary font-normal md:w-32 lg:w-36">{product.name}</h2>
         <p className="text-xl text-tertiary font-medium mt-2">
           {FormatPrice(product.price)}
         </p>
