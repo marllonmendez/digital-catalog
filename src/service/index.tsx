@@ -1,4 +1,3 @@
-import config from '@/config'
 import axios from 'axios'
 
 class Service {
@@ -26,7 +25,7 @@ class Service {
 }
 
 export const api = axios.create({
-  baseURL: `${config.apiURL}`,
+  baseURL: import.meta.env.VITE_API_URL,
 })
 
 export default new Service()

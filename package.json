@@ -1,7 +1,7 @@
 {
   "name": "digital-catalog",
   "private": true,
-  "version": "1.4.1-dev",
+  "version": "1.4.2-dev",
   "type": "module",
   "description": "React TypeScript on Replit, using Vite bundler",
   "scripts": {
