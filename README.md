@@ -32,6 +32,8 @@ O **Digital Catalog** é uma solução inovadora projetada para digitalizar a di
 
 Ao digitalizar a divulgação de produtos, contribuímos para a preservação do meio ambiente, eliminando a necessidade de impressões em papel. Esta iniciativa está alinhada com os Objetivos de Desenvolvimento Sustentável (ODS), em especial o **ODS 12: Produção e Consumo Responsáveis**, incentivando práticas mais conscientes e sustentáveis tanto para comerciantes quanto para consumidores.
 
+[![Projeto](./src/assets/projeto.png)]()
+
 ## Guia de Instalação
 
 <h4>1. Clonagem do Repositório</h4>

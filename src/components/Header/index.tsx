@@ -6,18 +6,19 @@ import { IHeader } from '@/interface'
 import Search from '@/components/Header/Search'
 import Button from '@/components/Button'
 
+import Logo from '../../assets/logo.png'
+
 const Header: React.FC<IHeader> = ({ addProduct }) => {
   return (
     <header className="flex flex-col justify-center w-full">
       <Search />
-      <div className="flex items-center justify-between w-full py-5">
-        <nav>
-          <a href="/" aria-label="Home">
-            <h1 className="text-white font-bold text-4xl sm:text-3xl md:text-3xl">
-              Catálogo
-            </h1>
-          </a>
-        </nav>
+      <div className="flex items-center justify-between w-full py-2">
+        <a href="/" aria-label="Home" className="flex items-center">
+          <img src={Logo} alt="Logo" className="w-20 md:w-10"/>
+          <h1 className="text-primary font-medium text-3xl sm:text-lg md:text-3xl">
+            Catálogo Digital
+          </h1>
+        </a>
         <Button
           label="Novo"
           onClick={addProduct}
